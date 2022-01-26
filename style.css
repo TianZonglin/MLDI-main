@@ -1,0 +1,295 @@
+header{
+    /* font-family: 'Pacifico', cursive; */
+    font-family: 'Righteous', cursive;
+    /* background-color: black; */
+    /* border: black;
+    color: white; */
+}
+body {
+    font-family: 'Raleway', sans-serif;
+    background: white;
+    width: 100%;
+}
+
+.header {
+    width: 100%;
+    top: 0;
+    position: fixed;
+}
+
+.logo {
+    float: left;
+}
+h2 {
+    margin:0;
+}
+h4 {
+  font-style: bold;
+}
+h5 {
+    margin: 0;
+    padding: 0 0 0 1%;
+}
+a {
+    text-decoration: none;
+    list-style: none;
+    float: left;
+    margin-left: 15px;
+    padding-top: 15px;
+    font-size: 36px;
+    color: lightgray;
+}
+
+.nav {
+    float: right;
+    padding-right: 100px;
+}
+
+.new{
+    width: 35vw;
+    position: fixed;
+    float: right;
+    padding-right: 0px;
+}
+
+ table{
+    /* display: block;
+    background: white;  */
+    border-collapse: collapse;
+    height: auto;
+    /* max-height: 475px; */
+    font-size: 12px;
+    /* align-self: flex-end; */
+    margin-block-end: 20px;
+} 
+
+  th {
+    border: 1px solid;
+    /* background-color: #f4c542; */
+}  
+
+ td {
+    background:white;
+    border: 1px solid gray;
+    padding: 10px;
+    border-collapse: collapse;    
+    text-align: left;
+    
+} 
+
+td.highlight {
+  background-color: whitesmoke !important;
+}
+
+tr:hover td {
+  background-color: whitesmoke !important;
+}
+
+p {
+    font-size: 12px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.node {
+  opacity: 0.8;
+}
+
+.node:hover {
+  opacity: 0.9;
+}
+
+.selected {
+    background-color: grey;
+    color: whitesmoke;
+  }
+
+.greyed-out {
+    opacity:0.5;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: 1;
+}
+
+#all {
+    /*border:1px solid black;*/
+    /* width:1090px; */
+    /* width: 1210px; */
+    width:100vw;
+    height: 100vh;
+    display: inline-block;
+}
+#allBox {
+    width: 100%;
+    margin: 1% auto;
+    padding: 0 1%;
+}
+
+#viz {
+    /* border:1px solid black;*/
+    max-width: 60vw; 
+    /* background-image: url(wave.png); */
+}
+
+#info {
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#infobox {
+    padding: 10px;
+    width: 35vw;
+    height:775px;
+    margin-right:0px;
+    margin-left:0px;
+}
+
+#application {
+    width: 55%;
+}
+.activeIcon {
+    /* background-color: rgb(204, 238, 205) !important; */
+    color: rgb(0,0,0);
+}
+
+.collapsible {
+    border: black;
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+
+.collapsible:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+
+  
+/* Style the collapsible content. Note: hidden by default */
+.content {
+padding: 0 18px;
+display: none;
+overflow-y: scroll;
+/* background-color: whitesmoke; */
+}
+  
+
+.d3-tip {
+  line-height: 1;
+  max-width: 250px;
+  top: -5px;
+    left: 105%; 
+  font-weight: normal;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.hashtag {
+  cursor: pointer;
+}
+
+/* Style the navigation bar */
+.navbar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+  }
+  
+  /* Navbar links */
+  .navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Navbar links on mouse-over */
+  .navbar a:hover {
+    background-color: #000;
+  }
+  #graphbox {
+    width: 50%;
+    float: left;
+    clear: none;
+    margin: auto;
+}
+.icon_image {
+    width: 2%;
+    float: right;
+    padding: 0 2%;
+    margin: auto;
+}
+#info-text{
+    width: 100%;
+    margin: auto ;
+}
+
+
+#dropdown {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.icon_image {
+    width: 2%;
+    float: right;
+    padding: 0 2%;
+    margin: auto;
+}
+
+#info_text {
+    width: 25%;
+    left:400px;
+    padding: 0.5% 1%;
+    display:none;
+    z-index:1;
+    position: absolute;
+    background-color: #e0e0e0;
+}
+
+#cat_barchart {
+    float: left;
+    clear: none;
+    margin: 0;
+}
+
+
+ol {
+    margin-top:0;
+}
+
+.tooltip{
+  text-anchor: start;
+  font-size: 18px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: bold;
+  fill: #ffffff;
+}
