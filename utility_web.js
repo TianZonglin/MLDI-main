@@ -2384,11 +2384,11 @@ function showClusterClaimsQuery(cluster) {
             },
             "orderFixed" : [2, 'asc']
         });
-        /*$('th:nth-child(3)').hide();
+        $('th:nth-child(3)').hide();
         $('th:nth-child(4)').hide();
         $('td:nth-child(3)').hide();
         $('td:nth-child(4)').hide();
-*/
+
 
         $('#info_t').on('click', 'tr', function () {
             var name = $(this).data('name');
