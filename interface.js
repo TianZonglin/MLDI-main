@@ -31,7 +31,7 @@ function setupExploreMode() {
     d3.select("#info-text").html("");
     //d3.select("#opt").append("h3").text("Exploration Mode")
 
-    d3.select("#opt").append("h4").text("More information about clusters of opinions can be accessed by clicking on cluster labels in the map.");
+    d3.select("#opt").append("h4").text("More information about the colored clusters of opinions can be accessed by clicking on the cluster labels in the map.");
 
     //d3.select("#opt").append("p").text("More information about individual opinions and clusters of opinions can be accessed by clicking on opinions nodes or, respectively, cluster labels in the map. Double-click on background to return to the information about the whole map.");
     //d3.select("#opt").append("p").html("You can choose if you want to view information about opinions or clusters (select <b>Information</b>) or to look at the claims they made (select <b>Claims</b>).");
@@ -39,7 +39,7 @@ function setupExploreMode() {
     d3.select("#opt").append("div").attr("id","info").html("");
 
     d3.select("#info").append("h4").text("All Claims");
-    d3.select("#info").append("p").text("This tables shows all claims that were used in the questionnaire.");
+    d3.select("#info").append("p").text("The table shows all claims that were used in the questionnaire.");
     showAllNodeClaims();
 
     //document.getElementById("button1").style.visibility='hidden';
@@ -148,9 +148,9 @@ function setupExploreMode() {
         //document.getElementById("button3").style.visibility='hidden';
 
         d3.select("#info").html("");
-        d3.select("#info").append("h4").text(d.label);
+        d3.select("#info").append("h4").text("Selected cluster: " + d.label);
         //d3.select("#info").append("p").style("font-size","11px").text(d.info);
-        d3.select("#info").append("p").text("The distribution of the answers given, for this country, are shown below in the bar chart. " +
+        d3.select("#info").append("p").text("All the claims that were voted upon in this country are listed in the table below. For a distribution of the answers given, for this country, see the bar chart below. " +
             "To see this all you need to do is scroll down.")
         d3.select("#info").style("background-color", "rgba(157,155,155,0.5)");
         selectedCluster = d;
