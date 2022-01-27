@@ -796,7 +796,7 @@ function selectCluster(c) {
 
     cellcircle.attr('fill', function(d) {
 		if(ids.indexOf(d["id"]) >= 0){
-			return '#f4c542';
+			return '#9d9b9b';
 		}
 		else {
 			return seq_colors[get_attribute(d, "membership_im")];
@@ -1276,6 +1276,22 @@ function showNodeClaimsQuery2(node) {
 function adjust(color, amount) {
     return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
 }
+function zoom(svg) {
+  const extent = [[margin.left, margin.top], [width - margin.right, height - margin.top]];
+
+  svg.call(d3.zoom()
+      .scaleExtent([1, 8])
+      .translateExtent(extent) //If extent is specified, sets the translate extent to the specified array of points in extent
+      .extent(extent) //If extent is specified, sets the viewport extent to the specified array of points (sets the zooming behaviour)
+      .on("zoom", zoomed)); //Applies this zoom behavior to the specified event
+ // in this function we will specify our zooming targets
+  function zoomed(event) {
+    x.range([margin.left, width - margin.right].map(d => event.transform.applyX(d)));
+    svg.selectAll(".rect").attr("x", d => x(d.name)).attr("width", x.bandwidth());
+    svg.selectAll(".x-axis").call(xAxis);
+    // in our case these targets are the x axis and the bar rectangles that's why when you zoom you won't see the y axis zooming too.
+  }
+}
 
 function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry') {
     // Empty canvas
@@ -1312,6 +1328,7 @@ function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry')
     var svg = d3.select("#bool_barchart").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+        //.call(zoom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -2072,45 +2089,7 @@ function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry')
         });}
     else
     {
-        d3.csv("data/allclaimsandvotes.csv", function(error, data) {
-          color.domain(d3.keys(data[0]).filter(function(key) { return key !== "name"; }));
-
-          // Stack data
-          data.forEach(function(d) {
-            var y0 = 0;
-            var myname = d.name;
-
-            if (chosenOption == "SHOW MOST NEGATIVE") {
-                var order = color.domain().slice(0).reverse().map(function(d) { return d; });
-            } else {
-                var order = color.domain().map(function(d) { return d; });
-            }
-
-            d.ages = order.map(function(name) { return {myname:myname,
-                name: name, y0: y0, y1: y0 += +d[name], value: d[name]}; });
-            d.total = d.ages[d.ages.length - 1].y1;
-
-            // Sort data based on filter
-            if (chosenOption == "SHOW MOST AGREEABLE") {
-                d.totalSort = Math.abs(d.ages[d.ages.length - 1].y0 - (d.ages[d.ages.length - 1].y1 - d.ages[d.ages.length - 1].y0))
-                data.sort(function(a, b) { return d3.descending(a.totalSort, b.totalSort);});
-            } else if (chosenOption == "SHOW MOST CONTROVERSIAL") {
-                d.totalSort = Math.abs(d.ages[d.ages.length - 1].y0 - (d.ages[d.ages.length - 1].y1 - d.ages[d.ages.length - 1].y0))
-    //            data.sort(function(a, b) { return b.totalSort - a.totalSort; });
-                data.sort(function(a, b) { return d3.ascending(a.totalSort, b.totalSort);});
-            } else if (chosenOption == "SHOW MOST POSITIVE") {
-                d.totalSort = d.ages[d.ages.length - 1].y0
-                d.totalSortSecondary = Math.abs(d.ages[d.ages.length - 1].y0 - (d.ages[d.ages.length - 1].y1 - d.ages[d.ages.length - 1].y0))
-                data.sort(function(a, b) { return b.totalSort - a.totalSort || d3.descending(a.totalSortSecondary, b.totalSortSecondary); });
-            } else if (chosenOption == "SHOW MOST NEGATIVE") {
-                d.totalSort = d.ages[d.ages.length - 1].y0
-//                data.sort(function(a, b) { return b.totalSort - a.totalSort; });
-                d.totalSortSecondary = Math.abs(d.ages[d.ages.length - 1].y0 - (d.ages[d.ages.length - 1].y1 - d.ages[d.ages.length - 1].y0))
-                data.sort(function(a, b) { return b.totalSort - a.totalSort || d3.descending(a.totalSortSecondary, b.totalSortSecondary); });
-            } else {
-                d.totalSort = d.total
-            }
-          })
+        d3.csv("", function(error, data) {
 
 
 
@@ -2219,7 +2198,7 @@ function showAllNodeClaims() {
 
     for (c in colnames) {
         if (colnames[c] == "type" ) {
-            colnames[c] = {"data" : colnames[c], "title" : names[c], "visible": false};    
+            colnames[c] = {"data" : colnames[c], "title" : names[c], "visible": true};
         } else {
             colnames[c] = {"data" : colnames[c], "title" : names[c]};
         }
@@ -2255,24 +2234,20 @@ function showAllNodeClaims() {
                 startRender: function (rows, group) {
 
                     // start with all row-groups collapsed, !!collapsedGroups to open all
-                    var collapsed = !collapsedGroups[group];
+                    var collapsed = !!collapsedGroups[group];
         
                     rows.nodes().each(function (r) {
                         r.style.display = collapsed ? 'none' : '';
                     });  
                     
                     return $('<tr/>')
-                        .append('<td colspan="8">' + group + '( no. of claims: ' + rows.count() +', avg. votes/claim: '+ avgVotesPerClaim(rows)  +')</td>')
-                        .attr('data-name', group)
-                        .toggleClass('collapsed', collapsed);
+                        //.append('<td colspan="8">' + group + '( no. of claims: ' + rows.count() +', avg. votes/claim: '+ avgVotesPerClaim(rows)  +')</td>')
+                        //.attr('data-name', group)
+                        //.toggleClass('collapsed', collapsed);
                 }
             },
-            "orderFixed" : [2, 'asc']
+            "orderFixed" : [0, 'asc']
         });
-        $('th:nth-child(3)').hide();
-        $('th:nth-child(4)').hide();
-        $('td:nth-child(3)').hide();
-        $('td:nth-child(4)').hide();
 
         $('#info_t').on('click', 'tr', function () {
             var name = $(this).data('name');
@@ -2331,7 +2306,7 @@ function showClusterClaimsQuery(cluster) {
 
     for (c in colnames) {
         if (colnames[c] == "type") {
-            colnames[c] = {"data" : colnames[c], "title" : names[c], "visible" : false};
+            colnames[c] = {"data" : colnames[c], "title" : names[c], "visible" : true};
         } else {
             colnames[c] = {"data" : colnames[c], "title" : names[c]};
         }
@@ -2369,7 +2344,7 @@ function showClusterClaimsQuery(cluster) {
                 startRender: function (rows, group) {
 
                     // start with all row-groups collapsed, !!collapsedGroups to open all
-                    var collapsed = !collapsedGroups[group];
+                    var collapsed = !!collapsedGroups[group];
         
                     rows.nodes().each(function (r) {
                         r.style.display = collapsed ? 'none' : '';
@@ -2377,17 +2352,18 @@ function showClusterClaimsQuery(cluster) {
         
                     // Add category name to the <tr>. NOTE: Hardcoded colspan
                     return $('<tr/>')
-                        .append('<td colspan="8">' + group + ' ( no. of claims: ' + rows.count() +', avg. votes/claim: '+ avgVotesPerClaim(rows) +', avg. degree of polarization: ' + avgDegreeOfPolarization(rows) + ')</td>')
-                        .attr('data-name', group)
-                        .toggleClass('collapsed', collapsed);
+                       //.append( ' ( no. of claims: ' + rows.count() +', avg. votes/claim: '+ avgVotesPerClaim(rows) +', avg. degree of polarization: ' + avgDegreeOfPolarization(rows) + ')</td>')
+                        //.attr('data-name', group)
+                        //.toggleClass('collapsed', collapsed);
                 }
             },
-            "orderFixed" : [2, 'asc']
+            //asc for ascending order. Other way use desc.
+            "orderFixed" : [0,'asc']
         });
-        $('th:nth-child(3)').hide();
         $('th:nth-child(4)').hide();
-        $('td:nth-child(3)').hide();
+        $('th:nth-child(5)').hide();
         $('td:nth-child(4)').hide();
+        $('td:nth-child(5)').hide();
 
 
         $('#info_t').on('click', 'tr', function () {

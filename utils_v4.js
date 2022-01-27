@@ -452,7 +452,7 @@ function highlightSupRejNodes(stnc) {
 }
 
 
-function selectNode(id) {
+/*function selectNode(id) {
 	cellcircle.attr('fill', function(d) {
 		if(d["id"] == id){
 			return '#f4c542';

@@ -29,9 +29,11 @@ function setupExploreMode() {
 
     d3.select("#opt").html("");
     d3.select("#info-text").html("");
-    d3.select("#opt").append("h3").text("Exploration Mode")
+    //d3.select("#opt").append("h3").text("Exploration Mode")
 
-    d3.select("#opt").append("p").text("More information about individual opinions and clusters of opinions can be accessed by clicking on opinions nodes or, respectively, cluster labels in the map. Double-click on background to return to the information about the whole map.");
+    d3.select("#opt").append("h4").text("More information about clusters of opinions can be accessed by clicking on cluster labels in the map.");
+
+    //d3.select("#opt").append("p").text("More information about individual opinions and clusters of opinions can be accessed by clicking on opinions nodes or, respectively, cluster labels in the map. Double-click on background to return to the information about the whole map.");
     //d3.select("#opt").append("p").html("You can choose if you want to view information about opinions or clusters (select <b>Information</b>) or to look at the claims they made (select <b>Claims</b>).");
 
     d3.select("#opt").append("div").attr("id","info").html("");
@@ -40,9 +42,9 @@ function setupExploreMode() {
     d3.select("#info").append("p").text("This tables shows all claims that were used in the questionnaire.");
     showAllNodeClaims();
 
-    document.getElementById("button1").style.visibility='hidden';
-    document.getElementById("button2").style.visibility='hidden';
-    document.getElementById("button3").style.visibility='hidden';
+    //document.getElementById("button1").style.visibility='hidden';
+    //document.getElementById("button2").style.visibility='hidden';
+    //document.getElementById("button3").style.visibility='hidden';
 
     boolBarChart();
 
@@ -68,9 +70,9 @@ function setupExploreMode() {
     }
 
     svg.on("dblclick", function(d) {
-        document.getElementById("button1").style.visibility='hidden';
-        document.getElementById("button2").style.visibility='hidden';
-        document.getElementById("button3").style.visibility='hidden';
+        //document.getElementById("button1").style.visibility='hidden';
+        //document.getElementById("button2").style.visibility='hidden';
+        //document.getElementById("button3").style.visibility='hidden';
 
         d3.select("#info").html("");
         d3.select("#info").append("h4").text("All Claims");
@@ -99,7 +101,7 @@ function setupExploreMode() {
         })
     })
 
-    node.on("click", function(d){
+    /*node.on("click", function(d){
         document.getElementById("button1").style.visibility='visible';
         document.getElementById("button2").style.visibility='visible';
         document.getElementById("button3").style.visibility='visible';
@@ -138,17 +140,19 @@ function setupExploreMode() {
           filterTable("info_t", text);
           });
 
-    });
+    });*/
 
     clabels.on('click', function(d){
-        document.getElementById("button1").style.visibility='hidden';
-        document.getElementById("button2").style.visibility='hidden';
-        document.getElementById("button3").style.visibility='hidden';
+        //document.getElementById("button1").style.visibility='hidden';
+        //document.getElementById("button2").style.visibility='hidden';
+        //document.getElementById("button3").style.visibility='hidden';
 
         d3.select("#info").html("");
         d3.select("#info").append("h4").text(d.label);
         //d3.select("#info").append("p").style("font-size","11px").text(d.info);
-        d3.select("#info").style("background-color", "rgba(244, 197, 66, 0.5)");
+        d3.select("#info").append("p").text("The distribution of the answers given, for this country, are shown below in the bar chart. " +
+            "To see this all you need to do is scroll down.")
+        d3.select("#info").style("background-color", "rgba(157,155,155,0.5)");
         selectedCluster = d;
         selectedNode=-1;
         selectCluster(d);

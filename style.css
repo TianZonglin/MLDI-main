@@ -58,7 +58,7 @@ a {
     border-collapse: collapse;
     height: auto;
     /* max-height: 475px; */
-    font-size: 12px;
+    font-size: 14px;
     /* align-self: flex-end; */
     margin-block-end: 20px;
 } 
@@ -86,7 +86,7 @@ tr:hover td {
 }
 
 p {
-    font-size: 12px;
+    font-size: 14px;
     font-family: 'Raleway', sans-serif;
 }
 

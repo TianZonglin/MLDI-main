@@ -43,10 +43,10 @@
             </div>
 
             <div class="nav">
-                <ul>
+                <!--<ul>
                     <a href="#"><i class="fa fa-globe" title="Exploration Mode" id="expl-mode"></i></a> 
                     <a href="#"><i class="fa fa-venus-mars" title="Statistics" id="stat-mode"></i></a> 
-                </ul>
+                </ul>-->
             </div>
 
         </div>
@@ -61,34 +61,31 @@
         <div id="opt"></div>
 
         <div class="new" >
-            <div class="dropdown">
+            <!--<div class="dropdown">
                 <button id="button1" class="button button1">Default</button>
                 <button id="button2" class="button button2">Positive first</button>
                 <button id="button3" class="button button3">Negative first</button>
-            </div>
+            </div>-->
 
         <div id="info-text" ></div>
-        </div>
+
     </div>
 </div>
 <div id="allBox">
 
     <div id="graphbox">
-        <h3>Visualization of the ratings</h3>
-        <p>Below graph visualizations of the answers to the scalar questions (e.g. ratings 1-7), boolean questions (e.g. yes/no), and categorical questions (e.g. type of religion).</p>
-<!--        <select id="filterButton"></select>-->
+        <h3>Visualization of the ratings of the selected country</h3>
 
         <div id="info_text">
             <h3>Filter Options</h3>
             <p>Select a button on the left to filter the answers.</p>
-            <p><strong>Show All</strong> Shows all questions in their original order.</p>
-            <p><strong>Show Most Agreed Upon</strong> Sorts questions on most similarly answered (e.g. everyone gave rating 'accepted').</p>
-            <p><strong>Show Most Controversial</strong> Sorts questions on most differently answered (e.g. all rates are equally often given).</p>
-            <p><strong>Show Most Positive</strong> Sorts questions on most positively rated (e.g. questions with the largest amount of rating accepted).</p>
-            <p><strong>Show Most Negative</strong> Sorts questions on most negatively rated (e.g. questions with the largest amount of rating rejected).</p>
+            <p><strong>Show All</strong> Shows all claims in their original order.</p>
+            <p><strong>Show Most Agreed Upon</strong> Sorts claims on most similarly answered (e.g. everyone 'accepted' the claim).</p>
+            <p><strong>Show Most Controversial</strong> Sorts claims on most differently answered (e.g. all claims are equally often accepted as rejected).</p>
+            <p><strong>Show Most Positive</strong> Sorts claims on most positively rated (e.g. claims with the largest amount of rating accepted).</p>
+            <p><strong>Show Most Negative</strong> Sorts claims on most negatively rated (e.g. claims with the largest amount of rating rejected).</p>
         </div>
 
-        <h4 style="text-align:left; !important">Boolean Questions</h4>
         <div>
             <p style="display:inline-block;">Filter:</p>
             <button style="display:inline-block;" id="filter_all2">Default</button>
@@ -194,20 +191,20 @@ var claimTypes = getClaimTypes();
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Initialize ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 function init() { 
 
-    document.getElementById("expl-mode").addEventListener("click", setupExploreMode);
+    //document.getElementById("expl-mode").addEventListener("click", setupExploreMode);
     //document.getElementById("info-mode").addEventListener("click", setupInfoMode);
     //document.getElementById("cons-mode").addEventListener("click", setupConsMode);
-    document.getElementById("stat-mode").addEventListener("click", setupStatMode);
-    document.getElementById("button1").style.visibility='hidden';
-    document.getElementById("button2").style.visibility='hidden';
-    document.getElementById("button3").style.visibility='hidden';
+    //document.getElementById("stat-mode").addEventListener("click", setupStatMode);
+    //document.getElementById("button1").style.visibility='hidden';
+    //document.getElementById("button2").style.visibility='hidden';
+    //document.getElementById("button3").style.visibility='hidden';
 
     d3.select("#opt")
                 .append('h4')
                 .append("text")
                 .text("Infobox: ");
 
-    d3.select("#opt").append('p')
+    d3.select("#opt").append('h4')
                         .text("For Information about countries or opinions, please click on the respective element on the map. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
 
 
@@ -696,6 +693,6 @@ d3.json(datapath, function(error, data) {
 
 
 </script>
-</body>
+ </body>
 </html>
 
