@@ -1425,7 +1425,7 @@ function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry')
                 var posY = parseFloat(d3.select(this).attr("y"));
                 var height = parseFloat(d3.select(this).attr("height"))
 
-                d3.select(this).attr("stroke","yellow").attr("stroke-width",3);
+                d3.select(this).attr("stroke","grey").attr("stroke-width",5);
 
                 svg.append("text")
                     .attr("x",posX + 30)
@@ -1550,7 +1550,7 @@ function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry')
                 var posY = parseFloat(d3.select(this).attr("y"));
                 var height = parseFloat(d3.select(this).attr("height"))
 
-                d3.select(this).attr("stroke","yellow").attr("stroke-width",3);
+                d3.select(this).attr("stroke","grey").attr("stroke-width",5);
 
                 svg.append("text")
                     .attr("x",posX + 30)
@@ -1675,7 +1675,7 @@ function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry')
                 var posY = parseFloat(d3.select(this).attr("y"));
                 var height = parseFloat(d3.select(this).attr("height"))
 
-                d3.select(this).attr("stroke","yellow").attr("stroke-width",3);
+                d3.select(this).attr("stroke","grey").attr("stroke-width",5);
 
                 svg.append("text")
                     .attr("x",posX)
@@ -1800,7 +1800,7 @@ function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry')
                 var posY = parseFloat(d3.select(this).attr("y"));
                 var height = parseFloat(d3.select(this).attr("height"))
 
-                d3.select(this).attr("stroke","yellow").attr("stroke-width",3);
+                d3.select(this).attr("stroke","grey").attr("stroke-width",5);
 
                 svg.append("text")
                     .attr("x",posX)
@@ -1925,7 +1925,7 @@ function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry')
                 var posY = parseFloat(d3.select(this).attr("y"));
                 var height = parseFloat(d3.select(this).attr("height"))
 
-                d3.select(this).attr("stroke","yellow").attr("stroke-width",3);
+                d3.select(this).attr("stroke","grey").attr("stroke-width",5);
 
                 svg.append("text")
                     .attr("x",posX)
@@ -2050,7 +2050,7 @@ function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry')
                 var posY = parseFloat(d3.select(this).attr("y"));
                 var height = parseFloat(d3.select(this).attr("height"))
 
-                d3.select(this).attr("stroke","yellow").attr("stroke-width",3);
+                d3.select(this).attr("stroke","grey").attr("stroke-width",5);
 
                 svg.append("text")
                     .attr("x",posX)
@@ -2140,7 +2140,7 @@ function boolBarChart(chosenOption = "SHOW ALL", chosenCountryLabel='NoCountry')
                 var posY = parseFloat(d3.select(this).attr("y"));
                 var height = parseFloat(d3.select(this).attr("height"))
 
-                d3.select(this).attr("stroke","yellow").attr("stroke-width",3);
+                d3.select(this).attr("stroke","grey").attr("stroke-width",5);
 
                 svg.append("text")
                     .attr("x",posX )
